@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 240, 249, 255;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+@layer base {
+  html {
+    direction: rtl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-12 text-gray-800;
+  }
+
+  .feature-card {
+    @apply p-6 rounded-xl bg-white shadow-md text-center;
+  }
+
+  .sticky-header {
+    @apply fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-md z-50 transition-all duration-500 transform opacity-0 -translate-y-full;
+    height: auto;
+    min-height: fit-content;
+    padding: 0;
+  }
+
+  .sticky-header.visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .sticky-header .logo {
+    @apply w-auto h-auto max-h-12 sm:max-h-16;
+  }
+
+  .sticky-header .btn {
+    @apply px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200;
+  }
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-primary-light {
+  color: var(--primary-light);
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+/* Water flow animation */
+@keyframes waterFlow {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.water-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover .water-icon {
+  animation: waterFlow 1s ease-in-out;
+}
+
+/* Handshake animation */
+@keyframes handshake {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.handshake-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover .handshake-icon {
+  animation: handshake 0.8s ease-in-out;
+}
+
+/* Users group pulse animation */
+@keyframes groupPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.users-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover .users-icon {
+  animation: groupPulse 0.8s ease-in-out;
+}
+
+/* Location pin animation */
+@keyframes pinDrop {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-15px);
+  }
+  70% {
+    transform: translateY(2px);
+  }
+  85% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.location-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card:hover .location-icon {
+  animation: pinDrop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
